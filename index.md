@@ -2,4 +2,4 @@
 
 ## Welcome to my github blog
 
-### [发电](sporeking.github.io/发电)
+### [2023/04/27 发电](sporeking.github.io/发电/20230427.md)
