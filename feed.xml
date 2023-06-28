@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-28T15:11:08+08:00</updated><id>/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">关于股票的一些基本概念</title><link href="/jekyll/update/2023/06/28/0-some_basical_concepts.html" rel="alternate" type="text/html" title="关于股票的一些基本概念" /><published>2023-06-28T15:03:00+08:00</published><updated>2023-06-28T15:03:00+08:00</updated><id>/jekyll/update/2023/06/28/0-some_basical_concepts</id><content type="html" xml:base="/jekyll/update/2023/06/28/0-some_basical_concepts.html"><![CDATA[<h1 id="0一些基本概念">0.一些基本概念</h1>
+
+<h2 id="目录">目录</h2>
+
+<h3 id="股票">股票</h3>
+
+<p>(stock)是股份公司所有权的一部分，也是发行的所有权凭证，是股份公司为筹集资金而发行给各个股东作为持股凭证并借以取得<strong>股息</strong>和<strong>红利</strong>的一种有价证券。股票是资本市场的长期信用工具，可以转让，买卖，股东凭借它可以分享公司的利润，但也要承担公司运作错误所带来的风险。每股股票都代表股东对企业拥有一个基本单位的所有权。每家上市公司都会发行股票。
+同一类别的每一份股票所代表的公司所有权是相等的。每个股东所拥有的公司所有权份额的大小，取决于其持有的股票数量占公司总股本的比重。</p>
+
+<h4 id="普通股">普通股</h4>
+
+<p><em>普通股</em>是享有普通权利、承担普通义务的股份，是公司股份的最基本形式。普通股的股东对公司的管理、收益享有平等权利，根据公司经营效益分红，风险较大。 在公司的经营管理和盈利及财产的分配上享有普通权利的股份，代表满足所有债权偿付要求及优先股东的收益权与求偿权要求后对企业盈利和剩余财产的索取权。它构成公司资本的基础，是股票的一种基本形式，也是发行量最大，最为重要的股票。<em>在上海和深圳证券交易所中交易的股票，都是普通股。</em></p>
+
+<h4 id="股票基本参数">股票基本参数</h4>
+
+<p><strong>总股本</strong>，包括新股发行前的股份和新发行的股份的<strong>数量的总和</strong>。<br />
+<strong>流通股</strong>指在证券市场交易流通的股票数量。<br />
+<strong>股本总额</strong>=股票面值<em>股份总额。<br />
+<strong>每股收益</strong>=净利润/年末普通股股份总数。<br />
+<strong>每股净资产</strong>（股票的净值、账面价值），是用会计统计的方法计算出来的每股股票所包含的资产净值。其计算方法是用公司的净资产（</em>包括注册资金、各种公积金、累积盈余等，不包括债务<em>）除以总股本，得到的就是每股的净值。股份公司的账面价值越高，则股东实际拥有的资产就越多。<br />
+<strong>每股资本公积金</strong>：<del>溢价发行债券的差额和无偿捐赠资金实物作为资本公积金。</del><br />
+<strong>市盈率</strong>=普通股每股市场价格/普通股每年每股收益。<br />
+<strong>每股未分配利润</strong>=企业当期未分配利润总额/总股本。<br />
+<strong>净资产收益率</strong>=税后利润/净资产</em>100%（<em>衡量公司运用自由成本的效率</em>）。<br />
+<strong>主营收入增长率</strong>=（本期主营收入-上期主营收入）/上期主营收入*100%。</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[0.一些基本概念]]></summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/jekyll/update/2023/06/28/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2023-06-28T14:31:05+08:00</published><updated>2023-06-28T14:31:05+08:00</updated><id>/jekyll/update/2023/06/28/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2023/06/28/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>Jekyll requires blog post files to be named according to the following format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry></feed>
