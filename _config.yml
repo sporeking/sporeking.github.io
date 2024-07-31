@@ -1,0 +1,60 @@
+# Welcome to Jekyll Paper for Github
+#
+# This is the configuration file for your blog, please change these items after forked.
+
+title: sporeking's blog
+email: sporeking123@gmail.com
+name: sporeking
+description: >- # this means to ignore newlines until "baseurl:"
+  Here's sporeking's blog! There may be some interesting things.
+keywords: ["AI"]
+baseurl: '' # the subpath of your site, e.g. /`blog
+url: 'https://sporeking.github.io' # the base hostname & protocol for your site, e.g. http://example.com
+domain: 'sporeking.github.io' # the domain name for your site, e.g. example.com
+language: zh-cn
+# Supported languages list:
+# en: English
+# de: Deutsche (German)
+# es: Español (Spanish)
+# fr: Français (French)
+# ja: 日本語 (Japanese)
+# pt: Português (Portuguese)
+# zh-cn: 简体中文 (Simplified Chinese)
+# zh-tw: 繁體中文 (Traditional Chinese)
+# ko : 한국어 (Korean)
+
+analytics: # the Google Analytics property ID, e.g. UA-XXXXX-Y
+
+comments: false # enable comments
+disqus: # disqus account
+
+mathjax: true # Math support
+diagram: true # Diagrams support
+
+paginate: 25
+paginate_path: '/page:num/'
+
+permalink: /:year/:month/:day/:title
+
+sass:
+  sass_dir: _sass
+  style: expanded # compressed, compact, expanded or compressed
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
