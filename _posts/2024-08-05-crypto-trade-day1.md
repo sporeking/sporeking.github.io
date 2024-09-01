@@ -284,7 +284,7 @@ qs.reports.html(returns, output='backtest.html', title='Backtest Report')
 ## 完整代码
 
 测试策略：backtest.py
-
+·····························
 ```python
 import pandas as pd
 import numpy as np

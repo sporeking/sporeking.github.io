@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "5852f0979e421389",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2024-08-09-crypto-trade-day2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "pages/about.md",
+                "file": "_posts/2024-08-09-crypto-trade-day2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "pages/about.md",
+                "file": "_posts/2024-08-09-crypto-trade-day2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "pages/about.md"
+                "file": "_posts/2024-08-09-crypto-trade-day2.md"
               }
             }
           }
@@ -148,6 +161,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "0106e889de542f76",
-  "lastOpenFiles": []
+  "active": "5852f0979e421389",
+  "lastOpenFiles": [
+    "_posts/2024-08-09-crypto-trade-day2.md",
+    "pages/about.md"
+  ]
 }
