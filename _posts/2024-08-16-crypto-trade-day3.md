@@ -143,10 +143,116 @@ $$\Delta y(t) = \lambda y(t-1) + \mu + \beta t +  \alpha_1 \Delta y(t - 1) + ...
 
 然而，当我们有多个价格序列时，我们可以将其转化为向量和矩阵的表示形式：  
 
-$\Delta Y(t) = \Lambda Y(t-1) + M + A_1 \Delta Y(t-1) + ... + A_K \Delta Y(t-k) + \epsilon_t$  
+$$\Delta Y(t) = \Lambda Y(t-1) + M + A_1 \Delta Y(t-1) + ... + A_K \Delta Y(t-k) + \epsilon_t$$  
 
-我们需要检验的东西是矩阵$\Lambda$的秩$r$。如果$\Lambda$的秩为0，那么我们就可以拒绝非协整性假设。同时，由各种线性组合的投资标的组合的数量也等于$r$。进而我们可以进行测试是否$r$等于价格序列的个数$n$（若$r<n$，说明无需所有
+我们需要检验的东西是矩阵$$\Lambda$$的秩$$r$$。如果$$\Lambda$$的秩为0，那么我们就可以拒绝非协整性假设。同时，由各种线性组合的投资标的组合的数量也等于$$r$$。进而我们可以进行测试是否$$r$$等于价格序列的个数$$n$$（若$$r<n$$，说明不是所有资产组合中的资产都参与到这个协整过程中）
+
+下面我们举一个例子：我们选择ADA, XRP, SOL三种币进行约翰森检验:  
+
+```python
+from statsmodels.tsa.vector_ar.vecm import coint_johansen
+result = coint_johansen(np.array([ada_close, xrp_close, sol_close]).T, det_order=0, k_ar_diff=1)
+print("Eigenvalues:", result.eig)
+print("Eigenvectors:", result.evec)
+print("Critical values (90%, 95%, 99%):", result.cvt)
+print("Trace statistic:", result.lr1)
+print("Max eigenvalue statistic:", result.lr2)
+```
+
+输出：  
+
+```dotnetcli
+Eigenvalues: [0.01556343 0.00747861 0.0052115 ]
+Eigenvectors: [[ 1.55284363 -0.43703663 -2.47380391]
+ [-6.10182014 -0.84906992  2.41205223]
+ [ 0.00906315 -0.01161473  0.01089735]]
+Critical values (90%, 95%, 99%): [[27.0669 29.7961 35.4628]
+ [13.4294 15.4943 19.9349]
+ [ 2.7055  3.8415  6.6349]]
+Trace statistic: [37.62498993 16.85697239  6.91807507]
+Max eigenvalue statistic: [20.76801754  9.93889731  6.91807507]
+```
+
+可以看到，有迹检验量和最大特征值检验量。从迹检验量来看，有95%的把握认为这三种币存在协整关系。然而，从最大特征值检验量来看，我们的把握就小的多了。同时，约翰森检验也给出了特征向量和特征值。显然，第一个特征值最大，那么我们可以认为第一组协整关系是最强的，也就是说，我们可以选择三个特征向量中的第一个作为我们的投资组合比例分配。  
+
+下面我们根据特征向量构造的投资组合进行半衰期的计算：
+
+```python
+jigen_vector = [1.55284363, -6.10182014, 0.00906315]
+triple_price_series = np.array([ada_close, xrp_close, sol_close])
+spread = np.dot(eigen_vector, triple_price_series)
+plt.plot(spread)
+plt.show()
+spread_series = pd.Series(spread)
+ylag = spread_series.shift(1)
+deltaY = spread_series - ylag
+deltaY = deltaY[1:]
+ylag = ylag[1:]
+X = sm.add_constant(ylag)
+regress_results = sm.OLS(deltaY, X).fit()
+half_life = -np.log(2) / regress_results.params[0]
+```
+
+得到投资组合的净值曲线：  
+
+![投资组合的净值曲线](/assets/images/crypto/3-4.png)
+
+计算得到半衰期为29.97天。这个半衰期比之前单一资产的半衰期短的多，使得我们有机可乘！  
 
 ### 投资组合相关的线性均值回归交易模式
 
+同样的，我们用一个十分简陋、不切实际的策略进行回测，即我们的仓位和(投资组合净值的偏离程度/投资组合净值的标准差)成正比。我们就使用上述的三种币的投资组合进行回测。
+
+策略主体部分节选：  
+
+```python
+def __init__(self):
+        # Keep a reference of the "close line" in the datas[0]
+        self.dataclose = self.datas[0].close
+        
+        # Keep a track of orders and buy price/commission
+        self.order = None
+        self.buyprice = None
+        self.buycomm = None
+        
+        self.yport = self.params.eigen_vector[0] * self.datas[0].close + \
+                     self.params.eigen_vector[1] * self.datas[1].close + \
+                     self.params.eigen_vector[2] * self.datas[2].close
+        
+        # Add a MovingAverageSimple indicator
+        self.sma = btind.SimpleMovingAverage(
+            self.yport, period=self.params.maperiod)
+        self.smstd = btind.StdDev(self.yport, period=self.params.maperiod)
+
+def next(self):
+        self.log("Close, {:.2f}".format(self.dataclose[0]), doprint=True)
+
+        self.num_units = -(self.yport[0] - self.sma[0]) * 10000 / self.smstd[0]
+
+        if self.order:
+            return
+        
+        positions = []
+
+        for i, data in enumerate(self.datas):
+            weight = self.params.eigen_vector[i]
+            position = self.num_units * weight * data.close[0]
+            positions.append(position) 
+
+            self.order_target_value(data, position)
+```
+
+回测结果：  
+
+![投资组合的均值回归交易策略](/assets/images/crypto/3-5.png)
+
+可以看到，十分的拉胯。笔者以为，这是因为这三个币从逻辑上来看并不具有十分强烈的协整性关系，当价差过大的时候，可能会遭受巨大的亏损。一般价差趋势来到如此强烈的地步，我们就应该思考，这个投资组合是否还是协整关系？这也告诉我们一个重要的道理：有时候检验统计量并不是如此的可靠！
+
 ## 总结：均值回归策略的利弊分析
+
+均值回归的几个优点：  
+
+1. 我们可以自由的创建自己的投资组合。当然，在crypto领域，这种投资组合的机会可能并不多，这种均值回归的策略应该更适合ETF的交易策略。
+2. 均值回归策略跨越了各种规模的时间尺度。均值回归的半衰期从几天到几年各不相等，当然我们认为半衰期越短的交易策略对我们更好。
+  
+不幸的是：看似具有很高一致性的均值回归交易策略最终很有可能失效！巨大的亏损常常发生在策略取得一系列成功之后，加大交易杠杆的时候，由此产生的罕见损失往往十分痛苦！因此，风险管理的概念显得十分重要。  
