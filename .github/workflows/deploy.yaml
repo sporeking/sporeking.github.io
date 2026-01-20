@@ -24,7 +24,7 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v1
         with:
-          version: "latest" # 始终使用最新版以支持 HTML 导出
+          version: "0.14.2" # 始终使用最新版以支持 HTML 导出
 
       - name: Build HTML
         run: |
