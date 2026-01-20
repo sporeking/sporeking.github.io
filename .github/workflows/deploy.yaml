@@ -29,12 +29,13 @@ jobs:
       - name: Build HTML
         run: |
           mkdir public
-          # 核心编译命令：将 main.typ 编译为 public/index.html
-          typst compile main.typ public/index.html --format html
-          
-          # 关键点：如果你的主页有图片（例如在 assets 文件夹），必须复制到 public 目录
-          # 如果没有 assets 文件夹，请删除下面这一行
+          # 核心编译命令：将仓库的首页入口编译为 public/index.html
+          # 仓库的入口文件位于 content/index.typ（不是 main.typ）
+          typst compile content/index.typ public/index.html --format html
+
+          # 复制静态资源：assets 和 content（包含各页面的 imgs 等）
           if [ -d "assets" ]; then cp -r assets public/; fi
+          if [ -d "content" ]; then cp -r content public/; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
