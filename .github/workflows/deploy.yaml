@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
@@ -27,12 +27,13 @@ jobs:
         #   version: "0.14.2" # 始终使用最新版以支持 HTML 导出
 
       - name: Build HTML
-        run: |
-          # 使用仓库提供的 Makefile 构建整个站点到 _site/
-          make html
+        run: make html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./_site
 
